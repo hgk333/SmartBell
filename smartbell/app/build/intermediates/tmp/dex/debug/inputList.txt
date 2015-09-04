@@ -1,0 +1,3 @@
+/Users/Tony/Documents/AndroidStudioProjects/smartbell/app/build/intermediates/classes/debug
+/Users/Tony/Documents/AndroidStudioProjects/smartbell/app/build/intermediates/pre-dexed/debug/volley-86728b3440619e47f9a0450c6643957fc937440d.jar
+/Users/Tony/Documents/AndroidStudioProjects/smartbell/app/build/intermediates/pre-dexed/debug/support-v4-18.0.0-b2d4e583069430d5f42db2b07201b41b36687434.jar

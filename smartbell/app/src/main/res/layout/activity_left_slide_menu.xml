@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#99cc771f"
+        android:visibility="invisible"
+        android:orientation="vertical"
+        android:id="@+id/LLPro"
+
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:orientation="horizontal"
+            >
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:id="@+id/ivBackPro"
+                android:src="@drawable/icon1"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="교수님 페이지"
+                android:textSize="30sp"
+                android:layout_weight="1"
+
+                />
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="20dp"
+                android:text="수정"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="#ffffff"
+                android:id="@+id/tvAdjustPro"
+                />
+            </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="60dp"
+            >
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/icon1"
+                android:layout_marginLeft="50dp"
+                android:id="@+id/ivNamePro"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="(교수님 성함)"
+                android:textColor="#ffffff"
+                android:textSize="30sp"
+                android:layout_marginLeft="15dp"
+
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            >
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/icon1"
+                android:layout_marginLeft="50dp"
+                android:id="@+id/ivEmailPro"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="(교수님 성함)"
+                android:textColor="#ffffff"
+                android:textSize="30sp"
+                android:layout_marginLeft="15dp"
+
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            >
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/icon1"
+                android:layout_marginLeft="50dp"
+                android:id="@+id/ivAddressPro"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="(연구실 주소)"
+                android:textColor="#ffffff"
+                android:textSize="30sp"
+                android:layout_marginLeft="15dp"
+
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            >
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/icon1"
+                android:layout_marginLeft="50dp"
+                android:id="@+id/ivSmartPro"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="(스마트벨 연결)"
+                android:textColor="#ffffff"
+                android:textSize="30sp"
+                android:layout_marginLeft="15dp"
+
+                />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <!-- Base Page-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#99cc771f"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:id="@+id/LLbase"
+        android:visibility="visible"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            >
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="130dp"
+                android:layout_height="60dp"
+                android:layout_toLeftOf="@+id/tvDay"
+                android:layout_above="@+id/tvHave"
+                android:text="곽현철"
+                android:textStyle="bold"
+
+                android:textSize="40sp"
+                android:gravity="center"
+                />
+            <TextView
+                android:id="@+id/tvDay"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_alignRight="@+id/tvHave"
+                android:layout_marginRight="60dp"
+                android:text="교수님."
+                android:textSize="30sp"
+                android:gravity="center"
+                android:layout_above="@+id/tvHave"
+
+                />
+            <TextView
+                android:id="@+id/tvHave"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="좋은 하루 보내세요!"
+                android:textSize="30sp"
+                />
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                >
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/icon1"
+                    android:layout_marginLeft="30dp"
+                    android:layout_gravity="center"
+                    />
+                <TextView
+                    android:id="@+id/tvProfessor"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:text="교수님 페이지"
+                    android:textSize="30sp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                >
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/icon1"
+                    android:layout_marginLeft="30dp"
+                    android:layout_gravity="center"
+                    />
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/tvFeedback"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:text="피드백 히스토리"
+                    android:textSize="30sp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                >
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/icon1"
+                    android:layout_marginLeft="30dp"
+                    android:layout_gravity="center"
+                    />
+                <TextView
+                    android:id="@+id/tvSetting"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:text="설정"
+                    android:textSize="30sp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    />
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/icon1"
+            android:layout_gravity="center"
+            />
+
+
+
+    </LinearLayout>
+    <!-- Feedback Page-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        android:id="@+id/LLFeedback"
+
+
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:orientation="horizontal"
+            >
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:id="@+id/ivBackPro2"
+                android:src="@drawable/icon1"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="피드백 히스토리"
+                android:textSize="30sp"
+                android:layout_weight="1"
+
+                />
+        </LinearLayout>
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+        </ListView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        android:id="@+id/LLSetting"
+        android:background="#99cc771f"
+
+
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:orientation="horizontal"
+            >
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:id="@+id/ivBackPro3"
+                android:src="@drawable/icon1"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="알람 설정"
+                android:textSize="30sp"
+                android:layout_weight="1"
+
+                />
+        </LinearLayout>
+
+        <Switch
+            android:layout_marginTop="80dp"
+            android:id="@+id/swAram"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="알림"
+            android:textSize="30sp"
+            android:padding="20dp"
+
+            />
+
+        <Switch
+            android:id="@+id/swEti"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="에티켓 설정"
+            android:textSize="30sp"
+            android:padding="20dp"
+
+            />
+
+
+    </LinearLayout>
+
+</FrameLayout>
