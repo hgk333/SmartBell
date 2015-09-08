@@ -2,18 +2,18 @@
 <items version="2" >
 
     <item
-        jar="/Users/Tony/Documents/AndroidStudioProjects/smartbell/app/libs/volley.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="d4aaa36e04ee71a83444f8367c97a46fda662d2c">
-        <dex dex="/Users/Tony/Documents/AndroidStudioProjects/smartbell/app/build/intermediates/pre-dexed/debug/volley-86728b3440619e47f9a0450c6643957fc937440d.jar" />
-    </item>
-    <item
-        jar="/Users/Tony/Library/Android/sdk/extras/android/m2repository/com/android/support/support-v4/18.0.0/support-v4-18.0.0.jar"
+        jar="E:\Android\sdk\extras\android\m2repository\com\android\support\support-v4\18.0.0\support-v4-18.0.0.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
-        <dex dex="/Users/Tony/Documents/AndroidStudioProjects/smartbell/app/build/intermediates/pre-dexed/debug/support-v4-18.0.0-b2d4e583069430d5f42db2b07201b41b36687434.jar" />
+        <dex dex="C:\Users\Tony\Documents\GitHub\SmartBell\smartbell\app\build\intermediates\pre-dexed\debug\support-v4-18.0.0-f0ab625e2aa242d01aa2cd3c4d39a3cf5323d1f8.jar" />
+    </item>
+    <item
+        jar="C:\Users\Tony\Documents\GitHub\SmartBell\smartbell\app\libs\volley.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d4aaa36e04ee71a83444f8367c97a46fda662d2c">
+        <dex dex="C:\Users\Tony\Documents\GitHub\SmartBell\smartbell\app\build\intermediates\pre-dexed\debug\volley-e9106a59be91920ac68ee225142613b218ad08f1.jar" />
     </item>
 
 </items>

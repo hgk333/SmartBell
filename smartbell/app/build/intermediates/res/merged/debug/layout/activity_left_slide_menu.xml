@@ -37,7 +37,7 @@
                 android:layout_weight="1"
 
                 />
-            <TextView
+            <Button
                 android:layout_width="60dp"
                 android:layout_height="40dp"
                 android:layout_marginRight="20dp"
@@ -47,7 +47,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:background="#ffffff"
-                android:id="@+id/tvAdjustPro"
+                android:id="@+id/btEditInfoOfPro"
                 />
             </LinearLayout>
 
@@ -72,7 +72,7 @@
                 android:textColor="#ffffff"
                 android:textSize="30sp"
                 android:layout_marginLeft="15dp"
-
+                android:id="@+id/tvSettingName"
                 />
 
         </LinearLayout>
@@ -93,10 +93,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:text="(교수님 성함)"
+                android:text="(교수님 메일)"
                 android:textColor="#ffffff"
                 android:textSize="30sp"
                 android:layout_marginLeft="15dp"
+                android:id="@+id/tvSettingEmail"
 
                 />
 
@@ -121,7 +122,7 @@
                 android:textColor="#ffffff"
                 android:textSize="30sp"
                 android:layout_marginLeft="15dp"
-
+                android:id="@+id/tvSettingAddress"
                 />
 
         </LinearLayout>
@@ -141,11 +142,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:text="(스마트벨 연결)"
+                android:text="(스마트벨 연결 여부)"
                 android:textColor="#ffffff"
                 android:textSize="30sp"
                 android:layout_marginLeft="15dp"
-
                 />
 
         </LinearLayout>
@@ -176,7 +176,7 @@
                 android:layout_height="60dp"
                 android:layout_toLeftOf="@+id/tvDay"
                 android:layout_above="@+id/tvHave"
-                android:text="곽현철"
+                android:text="    "
                 android:textStyle="bold"
 
                 android:textSize="40sp"
@@ -408,4 +408,4 @@
     </LinearLayout>
 
 </FrameLayout>
-<!-- From: file:/Users/Tony/Documents/AndroidStudioProjects/smartbell/app/src/main/res/layout/activity_left_slide_menu.xml -->
+<!-- From: file:/C:/Users/Tony/Documents/GitHub/SmartBell/smartbell/app/src/main/res/layout/activity_left_slide_menu.xml -->
