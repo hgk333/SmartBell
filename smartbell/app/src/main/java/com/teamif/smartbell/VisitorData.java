@@ -11,6 +11,8 @@ public class VisitorData
     private String thumbnailURL;
     private String time;
     private String visitorID;
+    private String visitor_seq_no;
+    private String feedback;
 
     public VisitorData()
     {
@@ -55,5 +57,21 @@ public class VisitorData
 
     public void setVisitorID(String visitorID) {
         this.visitorID = visitorID;
+    }
+
+    public void setVisitorSeqNo(String seq_no) {
+        this.visitor_seq_no = seq_no;
+    }
+
+    public String getVisitorSeqNo() {
+        return visitor_seq_no;
+    }
+
+    public void setFeedback(String fb) {
+        this.feedback = fb;
+    }
+
+    public String getFeedback() {
+        return feedback;
     }
 }

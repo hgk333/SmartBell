@@ -120,6 +120,7 @@ public class VisitListAdpater extends BaseAdapter  {
             //Toast.makeText(getApplicationContext(), "good!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent( this.a , PopUpInfo.class);
 
+            intent.putExtra("seq_no", m.getVisitorSeqNo() ); //seq_no
             intent.putExtra("name", m.getName() ); //title
             intent.putExtra("purpose", m.getPurpose()); //rating
             intent.putExtra("visit_time", m.getTime()); //year

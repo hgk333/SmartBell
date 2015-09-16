@@ -8,6 +8,7 @@ import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -15,10 +16,13 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -34,7 +38,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 //Import statements for communicate with server
@@ -47,10 +53,25 @@ public class MainActivity extends Activity implements OnClickListener, RadioGrou
 
     static final String TAG = "MainActivity";
     static final String TEMP_DEVICE_NO = "1000000";
-    static final String CHANGE_STATUS_URL = "http://210.121.154.236/node/smartbelltest/changedevicestatus";
+
+    //static final String SERVER_URL = "http://alpha.jiams.kr:3301/sb";
+    static final String SERVER_URL = "http://210.121.154.235:3301";
+    static final String API_JSON_TEST_URL = "/sb/jsontest";
+    static final String API_VIEW_VISITOR_URL = "/sb/viewlog";
+    static final String API_VIEW_FEEDBACK_URL = "/sb/fblist";
+    static final String API_CHANGE_STATUS_URL = "/sb/changedevicestatus";
+    static final String API_LEAVE_FEEDBACK_URL = "/sb/feedback";
+
+
+    //static final String CHANGE_STATUS_URL = "http://210.121.154.236/node/smartbelltest/changedevicestatus";
     static final String VIEW_LOG_URL = "http://210.121.154.236/node/smartbelltest/viewlog";
-    static final String SERVER_PARAM_DEVICE_NO = "deviceNo";
-    static final String SERVER_PARAM_NEW_STATUS = "newStatus";
+    static final String SERVER_PARAM_DEVICE_NO = "device_id";
+    static final String SERVER_PARAM_NEW_STATUS = "status";
+
+    static final String SERVER_PARAM_VISITOR_SEQ_NO = "seq_no";
+    static final String SERVER_PARAM_FEEDBACK = "feedback";
+
+
 
     static final String DEVICE_STATUS_IN_ROOM = "10";
     static final String DEVICE_STATUS_ON_CLASS = "20";
@@ -58,7 +79,7 @@ public class MainActivity extends Activity implements OnClickListener, RadioGrou
     static final String DEVICE_STATUS_GO_OUTSIDE = "40";
     static final String DEVICE_STATUS_OFF_OFFICE = "00";
 
-    private ProgressDialog pDialog;
+    private static ProgressDialog pDialog;
     private Button updateButton;
     private VisitListAdpater adapter;
     JsonArrayRequest logReq;
@@ -66,11 +87,11 @@ public class MainActivity extends Activity implements OnClickListener, RadioGrou
     ListView mVisitListView;
     VisitListAdpater mVisitorAdapter;
 
-    private String name;
-    private String purpose;
-    private String time;
-    private String thumbnail;
-    private String phone;
+//    private String name;
+//    private String purpose;
+//    private String time;
+//    private String thumbnail;
+//    private String phone;
 
     private ImageView btHome;
     private ImageView btSearch;
@@ -94,7 +115,7 @@ public class MainActivity extends Activity implements OnClickListener, RadioGrou
         mVisitListData = new ArrayList<VisitorData>();
 
         //
-        AddTestData();
+        //AddTestData();
 
         mVisitorAdapter = new VisitListAdpater(this,mVisitListData );
 
@@ -123,70 +144,96 @@ public class MainActivity extends Activity implements OnClickListener, RadioGrou
         pDialog.setMessage("Loading...");
         pDialog.show();
 
+        UpdateVisitorList();
+
+        // JSONObjectRequest test code
+//        String a = SERVER_URL + JSON_TEST_URL;
+//        JsonObjectRequest testReq;
+//        testReq = new JsonObjectRequest(Request.Method.GET, a, null,
+//            new Response.Listener<JSONObject>() {
+//                    @Override
+//                    public void onResponse(JSONObject jsonObject) {
+//                        VolleyLog.d(TAG, "Error: " + jsonObject.toString());
+//                        hidePDialog();
+//                    }
+//                },
+//            new Response.ErrorListener() {
+//                @Override
+//                public void onErrorResponse(VolleyError volleyError) {
+//                    VolleyLog.d(TAG, "Error: " + volleyError.getMessage());
+//                    hidePDialog();
+//                }
+//        });
+//        AppController.getInstance().addToRequestQueue(testReq);
 
 
 
-        logReq = new JsonArrayRequest("http://210.121.154.236/node/smartbelltest/viewlog",new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                Log.d(TAG, response.toString());
-
-                hidePDialog();
-
-                //Toast.makeText(getApplicationContext(), "파싱 포문 전", Toast.LENGTH_SHORT).show();
-
-                // Parsing json
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-
-                        JSONObject obj = response.getJSONObject(i);
-                        VisitorData visitorData = new VisitorData();
-                        visitorData.setName(obj.getString("visiter_name"));
-                        name = visitorData.getName();
-                        visitorData.setThumbnailURL(obj
-                                .getString("picture_path"));
-                        thumbnail = visitorData.getThumbnailURL();
-                        visitorData.setPurpose((obj.getString("purpose")));
-                        purpose = visitorData.getPurpose();
-
-                        visitorData.setTime(obj
-                                .getString("visit_time"));
-                        time = visitorData.getTime();
-
-                        // Genre is json array
-                        // JSONArray genreArry =
-                        // obj.getJSONArray("genre");
-                        ArrayList<String> genre = new ArrayList<String>();
-
-                        genre.add(obj.getString("visiter_number"));
-                        phone = obj.getString("visiter_phone");
-
-                        visitorData.setVisitorID(phone);
-
-                        // adding movie to movies array
-                        mVisitListData.add(visitorData);
-
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-
-                // notifying list adapter about data changes
-                // so that it renders the list view with updated data
-                mVisitorAdapter.notifyDataSetChanged();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-                hidePDialog();
-
-            }
-        });
-
-        AppController.getInstance().addToRequestQueue(logReq);
+//        String viewVisitorURL = GetServerAPIURL(API_VIEW_VISITOR_URL);
+//        //String a_URL = "http://alpha.jiams.kr:3301/sb/api/viewlog";
+//
+//        //logReq = new JsonArrayRequest("http://210.121.154.236/node/smartbelltest/viewlog",new Response.Listener<JSONArray>() {
+//        logReq = new JsonArrayRequest(viewVisitorURL ,new Response.Listener<JSONArray>() {
+//            @Override
+//            public void onResponse(JSONArray response) {
+//                Log.d(TAG, response.toString());
+//
+//                hidePDialog();
+//
+//                //Toast.makeText(getApplicationContext(), "파싱 포문 전", Toast.LENGTH_SHORT).show();
+//
+//                // Parsing json
+//                for (int i = 0; i < response.length(); i++) {
+//                    try {
+//
+//                        JSONObject obj = response.getJSONObject(i);
+//                        VisitorData visitorData = new VisitorData();
+//                        SetJSONObjectAsVistorData(visitorData, obj);
+////                        visitorData.setName(obj.getString("visitor_name"));
+////                        name = visitorData.getName();
+////                        visitorData.setThumbnailURL(obj
+////                                .getString("picture_path"));
+////                        thumbnail = visitorData.getThumbnailURL();
+////                        visitorData.setPurpose((obj.getString("purpose")));
+////                        purpose = visitorData.getPurpose();
+////
+////                        visitorData.setTime(obj
+////                                .getString("visit_time"));
+////                        time = visitorData.getTime();
+////
+////                        // Genre is json array
+////                        // JSONArray genreArry =
+////                        // obj.getJSONArray("genre");
+////                        ArrayList<String> genre = new ArrayList<String>();
+////
+////                        genre.add(obj.getString("visitor_number"));
+////                        phone = obj.getString("visitor_phone");
+////
+////                        visitorData.setVisitorID(phone);
+//
+//                        // adding movie to movies array
+//                        mVisitListData.add(visitorData);
+//
+//
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                }
+//
+//                // notifying list adapter about data changes
+//                // so that it renders the list view with updated data
+//                mVisitorAdapter.notifyDataSetChanged();
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                VolleyLog.d(TAG, "Error: " + error.getMessage());
+//                hidePDialog();
+//
+//            }
+//        });
+//
+//        AppController.getInstance().addToRequestQueue(logReq);
 
 
     }
@@ -208,35 +255,36 @@ public class MainActivity extends Activity implements OnClickListener, RadioGrou
 
     private static final String vistorRequstURL = "http://210.121.154.236/node/smartbelltest/viewlog";
 
-    private void hidePDialog() {
+    private static void hidePDialog() {
         if (pDialog != null) {
             pDialog.dismiss();
             pDialog = null;
         }
     }
 
-    // 서버로 부터 방문자 리스트를 가져와서
-    // 리스트 뷰의 기존 데이터를 지우고 새 데이터로 업데이트 한다.
-    private void updateList(JsonArrayRequest visitReq,
-                            final List<VisitorData> visitorDataList) {
 
-        // 로딩 다이얼로그 출력
-        pDialog = new ProgressDialog(this);
-        // Showing progress dialog before making http request
-        pDialog.setMessage("Loading...");
-        pDialog.show();
+    private void UpdateVisitorList() {
 
+        UpdateVisitorListEx(API_VIEW_VISITOR_URL, mVisitListData, mVisitorAdapter);
+    }
 
-        // 기존 데이터 삭제
-        visitorDataList.clear();
-        // Creating volley request obj
+    public static void UpdateVisitorListEx(String API, List<VisitorData> visitorListDatas, BaseAdapter adapter)
+    {
+        //String viewVisitorURL = GetServerAPIURL(API_VIEW_VISITOR_URL);
+        String viewVisitorURL = GetServerAPIURL(API);
+        //String a_URL = "http://alpha.jiams.kr:3301/sb/api/viewlog";
 
-
-        visitReq = new JsonArrayRequest(vistorRequstURL,new Response.Listener<JSONArray>() {
+        //logReq = new JsonArrayRequest("http://210.121.154.236/node/smartbelltest/viewlog",new Response.Listener<JSONArray>() {
+        JsonArrayRequest req = new JsonArrayRequest(viewVisitorURL ,new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 Log.d(TAG, response.toString());
+
                 hidePDialog();
+
+                visitorListDatas.clear();
+
+                //Toast.makeText(getApplicationContext(), "파싱 포문 전", Toast.LENGTH_SHORT).show();
 
                 // Parsing json
                 for (int i = 0; i < response.length(); i++) {
@@ -244,40 +292,19 @@ public class MainActivity extends Activity implements OnClickListener, RadioGrou
 
                         JSONObject obj = response.getJSONObject(i);
                         VisitorData visitorData = new VisitorData();
-                        visitorData.setName(obj.getString("visiter_name"));
-                        name = visitorData.getName();
-                        visitorData.setThumbnailURL(obj
-                                .getString("picture_path"));
-                        thumbnail = visitorData.getThumbnailURL();
-                        visitorData.setPurpose((obj.getString("purpose")));
-                        purpose = visitorData.getPurpose();
-
-                        visitorData.setTime(obj
-                                .getString("visit_time"));
-                        time = visitorData.getTime();
-
-                        // Genre is json array
-                        // JSONArray genreArry =
-                        // obj.getJSONArray("genre");
-                        ArrayList<String> genre = new ArrayList<String>();
-
-                        genre.add(obj.getString("visiter_number"));
-                        phone = obj.getString("visiter_number");
-
-                        visitorData.setVisitorID(phone);
+                        AppController.SetJSONObjectAsVistorData(visitorData, obj);
 
                         // adding movie to movies array
-                        mVisitListData.add(visitorData);
+                        visitorListDatas.add(visitorData);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
                 }
-
                 // notifying list adapter about data changes
                 // so that it renders the list view with updated data
-                mVisitorAdapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -288,9 +315,86 @@ public class MainActivity extends Activity implements OnClickListener, RadioGrou
             }
         });
 
-        AppController.getInstance().addToRequestQueue(visitReq);
+        AppController.getInstance().addToRequestQueue(req);
+    }
 
-    }// end of updateList
+    // 서버로 부터 방문자 리스트를 가져와서
+    // 리스트 뷰의 기존 데이터를 지우고 새 데이터로 업데이트 한다.
+//    private void updateList(JsonArrayRequest visitReq,
+//                            final List<VisitorData> visitorDataList) {
+//
+//        // 로딩 다이얼로그 출력
+//        pDialog = new ProgressDialog(this);
+//        // Showing progress dialog before making http request
+//        pDialog.setMessage("Loading...");
+//        pDialog.show();
+//
+//
+//        // 기존 데이터 삭제
+//        visitorDataList.clear();
+//        // Creating volley request obj
+//
+//
+//        visitReq = new JsonArrayRequest(vistorRequstURL,new Response.Listener<JSONArray>() {
+//            @Override
+//            public void onResponse(JSONArray response) {
+//                Log.d(TAG, response.toString());
+//                hidePDialog();
+//
+//                // Parsing json
+//                for (int i = 0; i < response.length(); i++) {
+//                    try {
+//
+//                        JSONObject obj = response.getJSONObject(i);
+//                        VisitorData visitorData = new VisitorData();
+//                        SetJSONObjectAsVistorData(visitorData, obj);
+////                        visitorData.setName(obj.getString("visitor_name"));
+////                        name = visitorData.getName();
+////                        visitorData.setThumbnailURL(obj
+////                                .getString("picture_path"));
+////                        thumbnail = visitorData.getThumbnailURL();
+////                        visitorData.setPurpose((obj.getString("purpose")));
+////                        purpose = visitorData.getPurpose();
+////
+////                        visitorData.setTime(obj
+////                                .getString("visit_time"));
+////                        time = visitorData.getTime();
+////
+////                        // Genre is json array
+////                        // JSONArray genreArry =
+////                        // obj.getJSONArray("genre");
+////                        ArrayList<String> genre = new ArrayList<String>();
+////
+////                        genre.add(obj.getString("visitor_number"));
+////                        phone = obj.getString("visitor_phone");
+////
+////                        visitorData.setVisitorID(phone);
+//
+//                        // adding movie to movies array
+//                        mVisitListData.add(visitorData);
+//
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                }
+//
+//                // notifying list adapter about data changes
+//                // so that it renders the list view with updated data
+//                mVisitorAdapter.notifyDataSetChanged();
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                VolleyLog.d(TAG, "Error: " + error.getMessage());
+//                hidePDialog();
+//
+//            }
+//        });
+//
+//        AppController.getInstance().addToRequestQueue(visitReq);
+//
+//    }// end of updateList
 
 
     //made by tony
@@ -367,36 +471,88 @@ public class MainActivity extends Activity implements OnClickListener, RadioGrou
         }
     }
 
-    //서버로 상태 변경 요청을 전송하는 메소드.
-    private void changeDeviceStatus(String newStatus){
+    public static String GetServerAPIURL(String apiURL)
+    {
+        return SERVER_URL + apiURL;
+    }
 
-        HttpClient http = new DefaultHttpClient();
-        try{
+//    //서버로 상태 변경 요청을 전송하는 메소드.
+//    private void changeDeviceStatus(String newStatus) {
+//
+//        String URL = GetServerAPIURL(API_CHANGE_STATUS_URL);
+//
+//        HashMap<String, String> params = new HashMap<String, String>();
+//        params.put(SERVER_PARAM_DEVICE_NO,TEMP_DEVICE_NO);
+//        params.put(SERVER_PARAM_NEW_STATUS,newStatus);
+//
+//        JsonObjectRequest req = new JsonObjectRequest(URL, new JSONObject(params),
+//                new Response.Listener<JSONObject>() {
+//                    @Override
+//                    public  void onResponse(JSONObject response) {
+//
+//                    }
+//                },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//
+//                }
+//        });
+//    }
 
-            ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+    public void changeDeviceStatus(String newStatus) {
 
-            nameValuePairs.add(new BasicNameValuePair( SERVER_PARAM_DEVICE_NO , TEMP_DEVICE_NO ));
-            nameValuePairs.add(new BasicNameValuePair( SERVER_PARAM_NEW_STATUS , newStatus ));
+        String URL = String.format("%s", MainActivity.GetServerAPIURL(MainActivity.API_CHANGE_STATUS_URL));
+        URL = URL + String.format("?%s=%s", MainActivity.SERVER_PARAM_DEVICE_NO, TEMP_DEVICE_NO);
+        URL = URL + String.format("&%s=%s", MainActivity.SERVER_PARAM_NEW_STATUS, newStatus);
+        StringRequest req = new StringRequest(Request.Method.GET, URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public  void onResponse(String response) {
+                        int x;
+                        x = 0;
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        int x;
+                        x = 0;
+                    }
+                }) {
+        };
+        AppController.getInstance().addToRequestQueue(req);
+    }
 
-            HttpParams params = http.getParams();
-            HttpConnectionParams.setConnectionTimeout(params, 10000);
-            HttpConnectionParams.setSoTimeout(params, 10000);
-
-            HttpPost httpPost = new HttpPost(CHANGE_STATUS_URL);
-            UrlEncodedFormEntity entityRequest =
-                    new UrlEncodedFormEntity(nameValuePairs, "UTF-8");
-
-            httpPost.setEntity(entityRequest);
-
-            HttpResponse responsePost = http.execute(httpPost);
-            HttpEntity resEntity = responsePost.getEntity();
-
-
-        }catch(Exception e){e.printStackTrace();}
-
-
-
-    }//end of changeDeviceStatus
+//    private void changeDeviceStatus(String newStatus){
+//
+//        HttpClient http = new DefaultHttpClient();
+//        try{
+//
+//            ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+//
+//            nameValuePairs.add(new BasicNameValuePair( SERVER_PARAM_DEVICE_NO , TEMP_DEVICE_NO ));
+//            nameValuePairs.add(new BasicNameValuePair( SERVER_PARAM_NEW_STATUS , newStatus ));
+//
+//            HttpParams params = http.getParams();
+//            HttpConnectionParams.setConnectionTimeout(params, 10000);
+//            HttpConnectionParams.setSoTimeout(params, 10000);
+//
+//            HttpPost httpPost = new HttpPost(CHANGE_STATUS_URL);
+//            UrlEncodedFormEntity entityRequest =
+//                    new UrlEncodedFormEntity(nameValuePairs, "UTF-8");
+//
+//            httpPost.setEntity(entityRequest);
+//
+//            HttpResponse responsePost = http.execute(httpPost);
+//            HttpEntity resEntity = responsePost.getEntity();
+//
+//
+//        }catch(Exception e){e.printStackTrace();}
+//
+//
+//
+//    }//end of changeDeviceStatus
 
 
     @Override

@@ -17,9 +17,22 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class LeftSlideMenu extends Activity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
@@ -47,6 +60,11 @@ public class LeftSlideMenu extends Activity implements View.OnClickListener, Com
     String pfAddress;
     String pfEmail;
     AudioManager checkAudio;
+
+
+    List<VisitorData> mFeedbackListData;
+    ListView mFeedbackListView;
+    FeedbackListAdpater mFeedbackAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +117,17 @@ public class LeftSlideMenu extends Activity implements View.OnClickListener, Com
         LLBase.setVisibility(View.VISIBLE);
         //이까지함 연결중....!
 
+        // 피드백 리스트
+        mFeedbackListData = new ArrayList<VisitorData>();
+        mFeedbackAdapter = new FeedbackListAdpater(this, mFeedbackListData );
+        mFeedbackListView = (ListView) findViewById( R.id.lvFeedBack );
+        mFeedbackListView.setAdapter(mFeedbackAdapter);
+
+//        VisitorData visitor;
+//        visitor = new VisitorData();
+//        visitor.setVisitorID("0123456");
+//        visitor.setPurpose("'성적'문의");
+//        mFeedbackListData.add(visitor);
     }
 
 
@@ -124,6 +153,8 @@ public class LeftSlideMenu extends Activity implements View.OnClickListener, Com
         return super.onOptionsItemSelected(item);
     }
 
+
+
     @Override
     public void onClick(View view) {
         switch(view.getId()){
@@ -137,12 +168,14 @@ public class LeftSlideMenu extends Activity implements View.OnClickListener, Com
                 Log.d("touch check","feedback page");
                 viewPage();
                 LLFeed.setVisibility(View.VISIBLE);
+                MainActivity.UpdateVisitorListEx(MainActivity.API_VIEW_FEEDBACK_URL, mFeedbackListData, mFeedbackAdapter);
 
                 break;
             case R.id.tvSetting : // setting page
-                Log.d("touch check","setting page");
+                Log.d("touch check", "setting page");
                 viewPage();
                 LLSetting.setVisibility(View.VISIBLE);
+
 
                 break;
             case R.id.ivBackPro :
