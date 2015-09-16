@@ -54,8 +54,8 @@ public class MainActivity extends Activity implements OnClickListener, RadioGrou
     static final String TAG = "MainActivity";
     static final String TEMP_DEVICE_NO = "1000000";
 
-    //static final String SERVER_URL = "http://alpha.jiams.kr:3301/sb";
-    static final String SERVER_URL = "http://210.121.154.235:3301";
+    static final String SERVER_URL = "http://alpha.jiams.kr:3301";
+    //static final String SERVER_URL = "http://210.121.154.235:3301";
     static final String API_JSON_TEST_URL = "/sb/jsontest";
     static final String API_VIEW_VISITOR_URL = "/sb/viewlog";
     static final String API_VIEW_FEEDBACK_URL = "/sb/fblist";
