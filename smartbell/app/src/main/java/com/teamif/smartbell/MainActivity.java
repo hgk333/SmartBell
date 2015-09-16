@@ -268,7 +268,7 @@ public class MainActivity extends Activity implements OnClickListener, RadioGrou
         UpdateVisitorListEx(API_VIEW_VISITOR_URL, mVisitListData, mVisitorAdapter);
     }
 
-    public static void UpdateVisitorListEx(String API, List<VisitorData> visitorListDatas, BaseAdapter adapter)
+    public static void UpdateVisitorListEx(String API, final List<VisitorData> visitorListDatas, final BaseAdapter adapter)
     {
         //String viewVisitorURL = GetServerAPIURL(API_VIEW_VISITOR_URL);
         String viewVisitorURL = GetServerAPIURL(API);
