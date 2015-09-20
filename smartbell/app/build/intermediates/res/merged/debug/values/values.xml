@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<<<<<<< Updated upstream
-    <!-- From: file:/C:/Users/Tony/Documents/GitHub/SmartBell/smartbell/app/src/main/res/values/colors.xml -->
-=======
     <!-- From: file:/Users/Tony/GitHub/SmartBell/smartbell/app/src/main/res/values/colors.xml -->
->>>>>>> Stashed changes
     <eat-comment/>
     <color name="base_color">#000000</color>
     <color name="genre">#666666</color>
@@ -15,11 +11,7 @@
     <color name="list_row_start_color">#ffffff</color>
     <color name="popup_bg">#fffaf0</color>
     <color name="year">#888888</color>
-<<<<<<< Updated upstream
-    <!-- From: file:/C:/Users/Tony/Documents/GitHub/SmartBell/smartbell/app/src/main/res/values/dimens.xml -->
-=======
     <!-- From: file:/Users/Tony/GitHub/SmartBell/smartbell/app/src/main/res/values/dimens.xml -->
->>>>>>> Stashed changes
     <eat-comment/>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
@@ -27,11 +19,7 @@
     <dimen name="rating">15dip</dimen>
     <dimen name="title">17dp</dimen>
     <dimen name="year">12dip</dimen>
-<<<<<<< Updated upstream
-    <!-- From: file:/C:/Users/Tony/Documents/GitHub/SmartBell/smartbell/app/src/main/res/values/strings.xml -->
-=======
     <!-- From: file:/Users/Tony/GitHub/SmartBell/smartbell/app/src/main/res/values/strings.xml -->
->>>>>>> Stashed changes
     <eat-comment/>
     <string name="action_settings">Settings</string>
     <string name="app_name">smartbell</string>

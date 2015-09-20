@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -128,6 +129,31 @@ public class LeftSlideMenu extends Activity implements View.OnClickListener, Com
 //        visitor.setVisitorID("0123456");
 //        visitor.setPurpose("'성적'문의");
 //        mFeedbackListData.add(visitor);
+        SharedPreferences preferences=getSharedPreferences("activity_left_slide_menu", 0);
+        pfName=preferences.getString("pfName"," ");
+        pfAddress=preferences.getString("pfAddress"," ");
+        pfEmail=preferences.getString("pfEmail"," ");
+        tvName.setText(pfName);
+        tvSettingName.setText(pfName);
+        tvSettingAddress.setText(pfAddress);
+        tvSettingEmail.setText(pfEmail);
+
+
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        // 데이타를저장합니다.
+
+        SharedPreferences preferences=getSharedPreferences("activity_left_slide_menu",0);
+        SharedPreferences.Editor editor = preferences.edit();
+
+        editor.putString("pfName",pfName);
+        editor.putString("pfAddress",pfAddress);
+        editor.putString("pfEmail",pfEmail);
+
+        editor.commit();
     }
 
 

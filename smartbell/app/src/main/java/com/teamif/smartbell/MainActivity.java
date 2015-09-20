@@ -3,6 +3,7 @@ package com.teamif.smartbell;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
@@ -62,7 +63,6 @@ public class MainActivity extends Activity implements OnClickListener, RadioGrou
     static final String API_CHANGE_STATUS_URL = "/sb/changedevicestatus";
     static final String API_LEAVE_FEEDBACK_URL = "/sb/feedback";
 
-
     //static final String CHANGE_STATUS_URL = "http://210.121.154.236/node/smartbelltest/changedevicestatus";
     static final String VIEW_LOG_URL = "http://210.121.154.236/node/smartbelltest/viewlog";
     static final String SERVER_PARAM_DEVICE_NO = "device_id";
@@ -102,6 +102,8 @@ public class MainActivity extends Activity implements OnClickListener, RadioGrou
     private RelativeLayout officeInfo;
 
     private RadioGroup radioGroup;
+
+    private String pfName;
 
 
     @Override
@@ -234,8 +236,9 @@ public class MainActivity extends Activity implements OnClickListener, RadioGrou
 //        });
 //
 //        AppController.getInstance().addToRequestQueue(logReq);
-
-
+        SharedPreferences preferences=getSharedPreferences("activity_left_slide_menu", 0);
+        pfName=preferences.getString("pfName"," ");
+        Log.d("preference","PfName"+pfName);
     }
 
     public void AddTestData()
@@ -553,7 +556,6 @@ public class MainActivity extends Activity implements OnClickListener, RadioGrou
 //
 //
 //    }//end of changeDeviceStatus
-
 
     @Override
     public void onDestroy() {

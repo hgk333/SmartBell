@@ -54,8 +54,4 @@
         android:textColor="@color/year"
         android:textSize="@dimen/year" />
 
-<<<<<<< Updated upstream
-</RelativeLayout><!-- From: file:/C:/Users/Tony/Documents/GitHub/SmartBell/smartbell/app/src/main/res/layout/list_row.xml -->
-=======
 </RelativeLayout><!-- From: file:/Users/Tony/GitHub/SmartBell/smartbell/app/src/main/res/layout/list_row.xml -->
->>>>>>> Stashed changes

@@ -4,8 +4,4 @@
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" android:showAsAction="never" />
 </menu>
-<<<<<<< Updated upstream
-<!-- From: file:/C:/Users/Tony/Documents/GitHub/SmartBell/smartbell/app/src/main/res/menu/menu_left_side_menu.xml -->
-=======
 <!-- From: file:/Users/Tony/GitHub/SmartBell/smartbell/app/src/main/res/menu/menu_left_side_menu.xml -->
->>>>>>> Stashed changes

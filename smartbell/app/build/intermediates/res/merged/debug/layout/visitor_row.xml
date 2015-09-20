@@ -36,8 +36,4 @@
                 android:layout_height="wrap_content" />
     </LinearLayout>
 
-<<<<<<< Updated upstream
-</LinearLayout><!-- From: file:/C:/Users/Tony/Documents/GitHub/SmartBell/smartbell/app/src/main/res/layout/visitor_row.xml -->
-=======
 </LinearLayout><!-- From: file:/Users/Tony/GitHub/SmartBell/smartbell/app/src/main/res/layout/visitor_row.xml -->
->>>>>>> Stashed changes

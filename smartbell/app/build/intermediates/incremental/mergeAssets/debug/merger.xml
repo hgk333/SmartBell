@@ -1,6 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< Updated upstream
-<merger version="3"><dataSet config="main"><source path="C:\Users\Tony\Documents\GitHub\SmartBell\smartbell\app\src\main\assets"/></dataSet><dataSet config="debug"><source path="C:\Users\Tony\Documents\GitHub\SmartBell\smartbell\app\src\debug\assets"/></dataSet></merger>
-=======
 <merger version="3"><dataSet config="main"><source path="/Users/Tony/GitHub/SmartBell/smartbell/app/src/main/assets"/></dataSet><dataSet config="debug"><source path="/Users/Tony/GitHub/SmartBell/smartbell/app/src/debug/assets"/></dataSet></merger>
->>>>>>> Stashed changes
