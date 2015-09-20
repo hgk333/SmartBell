@@ -22,7 +22,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:id="@+id/ivBackPro"
-                android:src="@drawable/icon1"
+                android:src="@drawable/back_20_14"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
 
@@ -296,7 +296,7 @@
         <ImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/icon1"
+            android:src="@drawable/if_icon"
             android:layout_gravity="center"
             />
 
@@ -322,7 +322,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:id="@+id/ivBackPro2"
-                android:src="@drawable/icon1"
+                android:src="@drawable/back_20_14"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
 
@@ -367,7 +367,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:id="@+id/ivBackPro3"
-                android:src="@drawable/icon1"
+                android:src="@drawable/back_20_14"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
 
@@ -409,4 +409,4 @@
     </LinearLayout>
 
 </FrameLayout>
-<!-- From: file:/Users/Tony/GitHub/SmartBell/smartbell/app/src/main/res/layout/activity_left_slide_menu.xml -->
+<!-- From: file:/C:/Users/Tony/Documents/GitHub/SmartBell/smartbell/app/src/main/res/layout/activity_left_slide_menu.xml -->

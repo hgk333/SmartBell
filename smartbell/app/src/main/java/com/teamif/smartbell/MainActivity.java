@@ -12,6 +12,7 @@ import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
@@ -101,6 +102,8 @@ public class MainActivity extends Activity implements OnClickListener, RadioGrou
 
     private RelativeLayout officeInfo;
 
+    private LinearLayout videoScreen;
+
     private RadioGroup radioGroup;
 
     private String pfName;
@@ -133,6 +136,7 @@ public class MainActivity extends Activity implements OnClickListener, RadioGrou
         officeInfo = (RelativeLayout)findViewById(R.id.office_info);
         radioGroup = (RadioGroup)findViewById(R.id.rgOfficeState);
         radioGroup.setOnCheckedChangeListener(this);
+        videoScreen = (LinearLayout)findViewById(R.id.videoScreen);
 
         btHome.setOnClickListener(this);
         btSearch.setOnClickListener(this);
@@ -426,8 +430,8 @@ public class MainActivity extends Activity implements OnClickListener, RadioGrou
                 break;
             case R.id.button_at: // 현재 사무실 앞 상황 카메라로 찍은 스샷띄우기
                 setVisible();
-                Log.d("test","at click");
-
+                Log.d("test", "at click");
+                videoScreen.setVisibility(View.VISIBLE);
                 break;
             case R.id.ivMenu :
                 Log.d("test","menu click");
@@ -441,6 +445,7 @@ public class MainActivity extends Activity implements OnClickListener, RadioGrou
     private void setVisible(){
         officeInfo.setVisibility(View.INVISIBLE);
         mVisitListView.setVisibility(View.INVISIBLE);
+        videoScreen.setVisibility(View.INVISIBLE);
     }
 
     @Override

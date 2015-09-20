@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,6 +32,8 @@ public class PopUpInfo extends Activity {
 	ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
 	private String visitor_seq_no;
+
+	String phoneNumber;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,13 +65,12 @@ public class PopUpInfo extends Activity {
         Button feedbackBtn = (Button) findViewById(R.id.popupbtnfeedback);
         Button callBtn = (Button) findViewById(R.id.popupbtncall);
 
+
         //전화번호냐, 학번이냐를 판단하여 피드백 단추나 전화걸기 단추가 보이도록 함.
         if (true){
-
             feedbackBtn.setVisibility(View.VISIBLE);
-
         }else {
-
+			phoneNumber="01012345678";
             callBtn.setVisibility(View.VISIBLE);
 
         }
@@ -95,7 +97,8 @@ public class PopUpInfo extends Activity {
         callBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-
+				startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+phoneNumber)));
+				// uri parse만 바꾸면 됨.
             }
         } );
 
