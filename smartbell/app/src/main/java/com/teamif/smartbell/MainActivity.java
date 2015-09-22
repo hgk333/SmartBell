@@ -74,11 +74,11 @@ public class MainActivity extends Activity implements OnClickListener, RadioGrou
 
 
 
-    static final String DEVICE_STATUS_IN_ROOM = "10";
-    static final String DEVICE_STATUS_ON_CLASS = "20";
-    static final String DEVICE_STATUS_IN_CAMPUS = "30";
-    static final String DEVICE_STATUS_GO_OUTSIDE = "40";
-    static final String DEVICE_STATUS_OFF_OFFICE = "00";
+    static final String DEVICE_STATUS_IN_ROOM = "1";
+    static final String DEVICE_STATUS_ON_CLASS = "2";
+    static final String DEVICE_STATUS_IN_CAMPUS = "3";
+    static final String DEVICE_STATUS_GO_OUTSIDE = "4";
+    static final String DEVICE_STATUS_OFF_OFFICE = "5 ";
 
     private static ProgressDialog pDialog;
     private Button updateButton;
