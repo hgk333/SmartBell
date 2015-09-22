@@ -96,6 +96,9 @@ public class AppController extends Application {
 
             visitorData.setFeedback(obj
                     .getString("feedback"));
+            visitorData.setVistorNumber(obj
+                    .getString("visitor_number"));
+
             //time = visitorData.getTime();
 
             // Genre is json array

@@ -36,6 +36,13 @@
                 android:layout_weight="1"
                 android:textAppearance="?android:attr/textAppearanceLarge" 
                 android:textColor="@color/base_color"/>
+            <TextView
+                android:id="@+id/popupnumber"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/base_color"/>
 
             <TextView
                 android:id="@+id/popuppurpose"

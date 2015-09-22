@@ -79,7 +79,7 @@ public class VisitListAdpater extends BaseAdapter  {
 //        }
 //        genreStr = genreStr.length() > 0 ? genreStr.substring(0,
 //                genreStr.length() - 2) : genreStr;
-        genre.setText(m.getVisitorID());
+        genre.setText(m.getVistorNumber());
 
         // release year
         year.setText(String.valueOf(m.getTime()));
@@ -126,6 +126,7 @@ public class VisitListAdpater extends BaseAdapter  {
             intent.putExtra("visit_time", m.getTime()); //year
             intent.putExtra("thumbnail", m.getThumbnailURL()); //thumbnail
             intent.putExtra("phone", m.getVisitorID()); //genre
+            intent.putExtra("number", m.getVistorNumber());
 
             a.startActivity(intent);
 

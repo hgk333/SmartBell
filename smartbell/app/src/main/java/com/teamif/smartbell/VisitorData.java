@@ -13,6 +13,7 @@ public class VisitorData
     private String visitorID;
     private String visitor_seq_no;
     private String feedback;
+    private String vistor_number;
 
     public VisitorData()
     {
@@ -74,4 +75,13 @@ public class VisitorData
     public String getFeedback() {
         return feedback;
     }
+
+    public void setVistorNumber(String vn) {
+        this.vistor_number = vn;
+    }
+
+    public String getVistorNumber() {
+        return vistor_number;
+    }
+
 }

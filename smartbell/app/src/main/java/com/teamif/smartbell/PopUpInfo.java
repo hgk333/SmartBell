@@ -45,6 +45,7 @@ public class PopUpInfo extends Activity {
 		Intent callerIntent = getIntent();
 
 		visitor_seq_no = (String) callerIntent.getSerializableExtra("seq_no");
+		phoneNumber = (String) callerIntent.getSerializableExtra("number");
 
 		String name = (String) callerIntent.getSerializableExtra("name");
 		String purpose = (String) callerIntent.getSerializableExtra("purpose");
@@ -60,6 +61,7 @@ public class PopUpInfo extends Activity {
 		TextView tv1 = (TextView) findViewById(R.id.popupname);
 		TextView tv2 = (TextView) findViewById(R.id.popuppurpose);
 		TextView tv3 = (TextView) findViewById(R.id.popupvisittime);
+		TextView tv4 = (TextView) findViewById(R.id.popupnumber);
 
 		Button backBtn = (Button) findViewById(R.id.popupbtnback);
         Button feedbackBtn = (Button) findViewById(R.id.popupbtnfeedback);
@@ -67,12 +69,12 @@ public class PopUpInfo extends Activity {
 
 
         //전화번호냐, 학번이냐를 판단하여 피드백 단추나 전화걸기 단추가 보이도록 함.
-        if (true){
+        if (phoneNumber.length()<10){
             feedbackBtn.setVisibility(View.VISIBLE);
+			tv4.setText("학번\n" + phoneNumber);
         }else {
-			phoneNumber="01012345678";
             callBtn.setVisibility(View.VISIBLE);
-
+			tv4.setText("전화번호\n"+phoneNumber);
         }
 
 		if (imageLoader == null)
